@@ -1,8 +1,8 @@
-# Electrical Energy Prediction System
+# Energy Prediction System
 
 <div align="center">
 
-![Electrical Energy Prediction System](images/main.png)
+![Energy Prediction System](images/main.png)
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![Python 3.8+](https://img.shields.io/badge/python-3.8+-blue.svg)](https://www.python.org/downloads/)
@@ -47,8 +47,8 @@ An advanced machine learning system for accurately predicting energy consumption
 1. Clone the repository:
 
 ```bash
-git clone https://github.com/yourusername/Electrical-energy-prediction.git
-cd Electrical-energy-prediction
+git clone https://github.com/yourusername/e-forecast.git
+cd e-forecast
 ```
 
 2. Create and activate a virtual environment:
@@ -183,7 +183,7 @@ Our analysis identified the most important factors affecting energy consumption:
 ## 📁 Project Structure
 
 ```
-Electrical-energy-prediction/
+e-forecast/
 ├── data/                    # Data directory
 ├── models/                  # Trained model files
 ├── notebooks/               # Jupyter notebooks

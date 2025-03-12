@@ -126,12 +126,6 @@ response = requests.post(
 print(json.dumps(response.json(), indent=2))
 ```
 
-## 🧠 Model Architecture
-
-The system employs a multi-model approach to maximize prediction accuracy:
-
-![Model Architecture](https://user-images.githubusercontent.com/12345678/example-architecture-url.png)
-
 ### XGBoost Model
 
 Gradient boosting model specialized for tabular data with complex feature interactions:

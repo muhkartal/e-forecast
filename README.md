@@ -2,7 +2,7 @@
 
 <div align="center">
 
-![Electrical Energy Prediction System](https://user-images.githubusercontent.com/12345678/example-image-url.png)
+![Electrical Energy Prediction System](images/main.png)
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![Python 3.8+](https://img.shields.io/badge/python-3.8+-blue.svg)](https://www.python.org/downloads/)
@@ -55,7 +55,7 @@ cd Electrical-energy-prediction
 
 ```bash
 python -m venv venv
-source venv/bin/activate  # On Windows: venv\Scripts\activate
+source venv/bin/activate  # On Windows: venv/Scripts/activate
 ```
 
 3. Install dependencies:

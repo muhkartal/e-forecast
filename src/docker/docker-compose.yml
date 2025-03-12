@@ -1,0 +1,73 @@
+version: "3.8"
+
+services:
+   api:
+      build:
+         context: ..
+         dockerfile: docker/Dockerfile
+      image: energy-prediction-api:latest
+      container_name: energy-prediction-api
+      restart: unless-stopped
+      ports:
+         - "8000:8000"
+      volumes:
+         - ../models:/app/models
+         - ../configs:/app/configs
+         - ../logs:/app/logs
+      environment:
+         - CONFIG_PATH=/app/configs/api_config.yaml
+         - LOG_LEVEL=INFO
+         - TZ=UTC
+      deploy:
+         resources:
+            limits:
+               cpus: "4"
+               memory: 8G
+            reservations:
+               cpus: "1"
+               memory: 2G
+      healthcheck:
+         test: ["CMD", "curl", "-f", "http://localhost:8000/health"]
+         interval: 30s
+         timeout: 10s
+         retries: 3
+         start_period: 30s
+
+   prometheus:
+      image: prom/prometheus:v2.42.0
+      container_name: energy-prediction-prometheus
+      restart: unless-stopped
+      volumes:
+         - ../configs/prometheus.yml:/etc/prometheus/prometheus.yml
+         - prometheus_data:/prometheus
+      command:
+         - "--config.file=/etc/prometheus/prometheus.yml"
+         - "--storage.tsdb.path=/prometheus"
+         - "--web.console.libraries=/etc/prometheus/console_libraries"
+         - "--web.console.templates=/etc/prometheus/consoles"
+         - "--web.enable-lifecycle"
+      ports:
+         - "9090:9090"
+      depends_on:
+         - api
+
+   grafana:
+      image: grafana/grafana:9.4.7
+      container_name: energy-prediction-grafana
+      restart: unless-stopped
+      volumes:
+         - grafana_data:/var/lib/grafana
+         - ../configs/grafana/provisioning:/etc/grafana/provisioning
+         - ../configs/grafana/dashboards:/var/lib/grafana/dashboards
+      environment:
+         - GF_SECURITY_ADMIN_USER=admin
+         - GF_SECURITY_ADMIN_PASSWORD=admin
+         - GF_USERS_ALLOW_SIGN_UP=false
+      ports:
+         - "3000:3000"
+      depends_on:
+         - prometheus
+
+volumes:
+   prometheus_data:
+   grafana_data:

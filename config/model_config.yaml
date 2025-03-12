@@ -1,0 +1,182 @@
+#  Energy Prediction System - Model Configuration
+
+# General settings
+general:
+   random_seed: 42
+   target_column: energy_consumption
+   test_size: 0.15
+   validation_size: 0.15
+   sequence_length: 60
+   step_size: 10
+   experiment_name: _energy_prediction
+   model_version: 1.0.0
+
+# Data preprocessing
+preprocessing:
+   outlier_method: clip # clip, remove, or none
+   outlier_threshold: 3.0
+   numeric_features:
+      - speed
+      - acceleration
+      - altitude
+      - elevation_change
+      - temperature
+      - wind_speed
+      - precipitation
+      - weight
+      - drag_coefficient
+      - frontal_area
+      - battery_capacity
+      - rolling_resistance
+      - hour_of_day
+      - day_of_week
+      - month
+      - energy_rolling
+      - energy_air
+      - energy_accel
+      - energy_elevation
+      - power
+      - speed_rolling_mean
+      - speed_rolling_std
+      - accel_rolling_mean
+      - accel_rolling_std
+   categorical_features:
+      - road_type
+      - is_weekend
+      - is_rush_hour
+      - is_daylight
+
+# XGBoost model
+xgboost:
+   n_estimators: 200
+   max_depth: 8
+   learning_rate: 0.05
+   subsample: 0.8
+   colsample_bytree: 0.8
+   min_child_weight: 3
+   gamma: 0.1
+   reg_alpha: 0.1
+   reg_lambda: 1.0
+   random_state: 42
+   n_jobs: -1
+   verbose: 100
+   early_stopping_rounds: 20
+   cv_folds: 5
+   hp_tuning:
+      enabled: true
+      n_trials: 50
+      max_evals: 50
+      search_space:
+         n_estimators:
+            min: 50
+            max: 500
+            step: 10
+         max_depth:
+            min: 3
+            max: 12
+            step: 1
+         learning_rate:
+            min: 0.01
+            max: 0.3
+            distribution: log
+         subsample:
+            min: 0.6
+            max: 1.0
+         colsample_bytree:
+            min: 0.6
+            max: 1.0
+         min_child_weight:
+            min: 1
+            max: 10
+            step: 1
+         gamma:
+            min: 0
+            max: 1
+         reg_alpha:
+            min: 0.01
+            max: 10
+            distribution: log
+         reg_lambda:
+            min: 0.01
+            max: 10
+            distribution: log
+
+# LSTM model
+lstm:
+   lstm_units: [128, 64]
+   dense_units: [32]
+   dropout_rate: 0.2
+   learning_rate: 0.001
+   epochs: 100
+   batch_size: 32
+   patience: 15
+   bidirectional: true
+   optimizer: adam
+   loss: mean_squared_error
+   metrics:
+      - mae
+      - rmse
+   hp_tuning:
+      enabled: true
+      n_trials: 30
+      search_space:
+         lstm_units_1:
+            min: 32
+            max: 256
+            step: 32
+         lstm_units_2:
+            min: 16
+            max: 128
+            step: 16
+         dense_units_1:
+            min: 16
+            max: 64
+            step: 8
+         dropout_rate:
+            min: 0.1
+            max: 0.5
+         learning_rate:
+            min: 0.0001
+            max: 0.01
+            distribution: log
+         batch_size:
+            values: [16, 32, 64, 128]
+
+# Ensemble model
+ensemble:
+   models:
+      - xgboost
+      - lstm
+   weights:
+      xgboost: 0.6
+      lstm: 0.4
+   weight_optimization: true
+   stacking: false
+
+# API configuration
+api:
+   port: 8000
+   host: "0.0.0.0"
+   model_paths:
+      xgboost: "models/trained/xgboost_model.joblib"
+      lstm: "models/trained/lstm_model.h5"
+   preprocessing:
+      scaler_path: "models/trained/feature_scaler.joblib"
+      encoder_path: "models/trained/categorical_encoder.joblib"
+      feature_config_path: "configs/feature_config.json"
+   prediction:
+      ensemble_weights:
+         xgboost: 0.6
+         lstm: 0.4
+      sequence_length: 60
+   cors:
+      origins: ["*"]
+      methods: ["*"]
+      headers: ["*"]
+
+# Monitoring
+monitoring:
+   log_level: INFO
+   metrics_enabled: true
+   prometheus_enabled: true
+   request_logging: true

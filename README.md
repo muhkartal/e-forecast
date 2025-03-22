@@ -366,7 +366,6 @@ This project is licensed under the [MIT License](LICENSE) - see the LICENSE file
 -  Project Link: [https://github.com/yourusername/FR-Framework](https://github.com/muhkartal/FR-Framework)
 -  Developer Website: [https://kartal.dev/](https://kartal.dev/) -->
 
----
 
 <div align="center">
 <p>If you find E-Forecast helpful, please consider giving it a star ⭐</p>

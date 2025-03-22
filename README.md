@@ -360,14 +360,15 @@ This project is licensed under the [MIT License](LICENSE) - see the LICENSE file
 
 
 ---
-
+<!-- 
 ## Contact
 
 -  Project Link: [https://github.com/yourusername/FR-Framework](https://github.com/muhkartal/FR-Framework)
--  Developer Website: [https://kartal.dev/](https://kartal.dev/)
+-  Developer Website: [https://kartal.dev/](https://kartal.dev/) -->
 
 ---
 
 <div align="center">
-<p>If you find FR-Framework helpful, please consider giving it a star ⭐</p>
+<p>If you find E-Forecast helpful, please consider giving it a star ⭐</p>
+<p>Muhkartal - kartal.dev</p>
 </div>

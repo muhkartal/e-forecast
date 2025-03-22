@@ -370,5 +370,5 @@ This project is licensed under the [MIT License](LICENSE) - see the LICENSE file
 
 <div align="center">
 <p>If you find E-Forecast helpful, please consider giving it a star ⭐</p>
-<p>Muhkartal - kartal.dev</p>
+<p>@Muhkartal - kartal.dev</p>
 </div>

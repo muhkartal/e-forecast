@@ -358,11 +358,16 @@ This project is licensed under the [MIT License](LICENSE) - see the LICENSE file
   - [Pandas](https://pandas.pydata.org/) and [NumPy](https://numpy.org/) for data processing
   - [Docker](https://www.docker.com/) for containerization
 
-- Datasets and research papers that informed our approach
+
+---
+
+## Contact
+
+-  Project Link: [https://github.com/yourusername/FR-Framework](https://github.com/muhkartal/FR-Framework)
+-  Developer Website: [https://kartal.dev/](https://kartal.dev/)
 
 ---
 
 <div align="center">
-  <p>Built with precision and care by the EV Energy Prediction Team</p>
-  <p>© 2023 EV Energy Prediction</p>
+<p>If you find FR-Framework helpful, please consider giving it a star ⭐</p>
 </div>
